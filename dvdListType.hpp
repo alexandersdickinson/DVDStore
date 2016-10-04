@@ -2,8 +2,8 @@
 #define H_DVDLinkedListType 
 
 #include <string>
-#include "unorderedLinkedList.h"
-#include "dvdType.h"
+#include "unorderedLinkedList.hpp"
+#include "dvdType.hpp"
   
 using namespace std;
 

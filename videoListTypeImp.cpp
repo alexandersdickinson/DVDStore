@@ -1,32 +1,32 @@
 #include <iostream>
 #include <string>
  
-#include "dvdListType.hpp"
+#include "videoListType.h"
 
 using namespace std; 
- 
-void dvdListType::searchDVDList(string title, bool& found, nodeType<dvdType>* &current) const
+
+void videoListType::searchVideoList(string title, bool& found,  
+                         nodeType<videoType>* &current) const
 {
     found = false;   //set found to false
    
     current = first; //set current to point to the first node
                      //in the list
 
-    while (current != nullptr && !found) {    //search the list
+    while (current != NULL && !found)     //search the list
         if (current->info.checkTitle(title)) //the item is found
             found = true;
         else
             current = current->link; //advance current to 
-                                     //the next node
-    }
-}//end searchDVDList
+                                     //the next node    
+}//end searchVideoList
 
-bool dvdListType::isDVDAvailable(string title) const
+bool videoListType::isVideoAvailable(string title) const
 {
     bool found;
-    nodeType<dvdType> *location;
+    nodeType<videoType> *location;
 
-    searchDVDList(title, found, location);
+    searchVideoList(title, found, location);
 
     if (found)
         found = (location->info.getNoOfCopiesInStock() > 0);
@@ -36,12 +36,12 @@ bool dvdListType::isDVDAvailable(string title) const
     return found;
 }
 
-void dvdListType::dvdCheckIn(string title)
+void videoListType::videoCheckIn(string title)
 {
     bool found = false;
-    nodeType<dvdType> *location;
+    nodeType<videoType> *location;
 
-    searchDVDList(title, found, location); //search the list
+    searchVideoList(title, found, location); //search the list
 
     if (found)
         location->info.checkIn();
@@ -50,12 +50,12 @@ void dvdListType::dvdCheckIn(string title)
              << endl;
 }
 
-void dvdListType::dvdCheckOut(string title)
+void videoListType::videoCheckOut(string title)
 {
     bool found = false;
-    nodeType<dvdType> *location;
+    nodeType<videoType> *location;
 
-    searchDVDList(title, found, location); //search the list
+    searchVideoList(title, found, location); //search the list
 
     if (found)
         location->info.checkOut();
@@ -64,22 +64,22 @@ void dvdListType::dvdCheckOut(string title)
              << endl;
 }
  
-bool dvdListType::dvdCheckTitle(string title) const
+bool videoListType::videoCheckTitle(string title) const
 {
     bool found = false;
-    nodeType<dvdType> *location;
+    nodeType<videoType> *location;
 
-    searchDVDList(title, found, location); //search the list
+    searchVideoList(title, found, location); //search the list
 
     return found;
 }
 
-void dvdListType::dvdUpdateInStock(string title, int num)
+void videoListType::videoUpdateInStock(string title, int num)
 {
     bool found = false;
-    nodeType<dvdType> *location;
+    nodeType<videoType> *location;
 
-    searchDVDList(title, found, location); //search the list
+    searchVideoList(title, found, location); //search the list
 
     if (found)
         location->info.updateInStock(num);
@@ -88,12 +88,12 @@ void dvdListType::dvdUpdateInStock(string title, int num)
              << endl;
 }
 
-void dvdListType::dvdSetCopiesInStock(string title, int num)
+void videoListType::videoSetCopiesInStock(string title, int num)
 {
     bool found = false;
-    nodeType<dvdType> *location;
+    nodeType<videoType> *location;
 
-    searchDVDList(title, found, location);
+    searchVideoList(title, found, location);
 
     if (found)
         location->info.setCopiesInStock(num);
@@ -102,22 +102,22 @@ void dvdListType::dvdSetCopiesInStock(string title, int num)
              << endl;
 }
 
-bool dvdListType::dvdSearch(string title) const
+bool videoListType::videoSearch(string title) const
 {
     bool found = false;
-    nodeType<dvdType> *location;
+    nodeType<videoType> *location;
 
-    searchDVDList(title, found, location);
+    searchVideoList(title, found, location);
 
     return found;
 }
 
-void dvdListType::dvdPrintTitle() const
+void videoListType::videoPrintTitle() const
 {
-    nodeType<dvdType>* current;
+    nodeType<videoType>* current;
 
     current = first;
-    while (current != nullptr)
+    while (current != NULL)
     {
         current->info.printTitle();
         current = current->link;
